@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<nav class="p-4 navbar navbar-expand-lg navbar-dark bg-dark " style="height: 80px">
+  <div class="container-fluid">
+    <div class="col-md-8">
+      <h1 class="navbar-brand" style="font-family: 'Montserrat', sans-serif; font-size:30px;"><a class="nav-link" href="{{url_for('home_route.home')}}">Nova Consulta</a></h1>
+    </div>
+  </div>
+</nav>
+<img src={{team.crest}} class="img rounded mx-auto d-block mt-10px" alt="Responsive image">
+<h1 class="titulo_result"> Time: <span class="titulo2">{{team.name}}</span>.</h1>
+{% endblock conteudo %}
