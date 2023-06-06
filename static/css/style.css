@@ -33,6 +33,11 @@ body {
     color: #D3B43B;
 }
 
+.new_query {
+    color: #D3B43B;
+    text-align:center;
+}
+
 body {
   margin: 0;
   background-color: #F2F2F2;

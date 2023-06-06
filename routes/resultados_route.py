@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from fuzzywuzzy import fuzz, process
+from unicodedata import normalize
 import requests
 
 resultados_route_bp = Blueprint('resultados_route', __name__)
@@ -9,12 +11,12 @@ from app import all_teams
 def get_team_id():
     if request.method == 'POST':
         team_name = request.form['team_name']
-
+        team_name = normalize('NFKD', team_name).encode('ASCII', 'ignore').decode('ASCII').title()
         for team in all_teams:
-            if team['name'] == team_name:
+            if team['shortName'] == team_name:
                 team_id = team['id']
                 return redirect(url_for('resultados_route.resultados', team_id=team_id))
-        return render_template('resultados.html', team='Time não encontrado')
+    return render_template('resultados_not_found.html')
 
 @resultados_route_bp.route('/resultados/<team_id>', methods=['GET', 'POST'])
 def resultados(team_id):
@@ -26,4 +28,4 @@ def resultados(team_id):
     if response.status_code == 200:
         jsondata = response.json()
         return render_template('resultados.html', team=jsondata)
-    return render_template('resultados.html', team='Time não encontrado')
+    return render_template('resultados_not_found.html')
