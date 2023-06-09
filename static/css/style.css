@@ -33,6 +33,11 @@ body {
     color: #D3B43B;
 }
 
+.fonte {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
 .new_query {
     color: #D3B43B;
     text-align:center;
@@ -178,4 +183,19 @@ button span:after {
   right: -6px;
   width: 40px;
   background-color: #fff;
+}
+
+.team-info {
+  margin-bottom: 20px;
+}
+
+.player-info {
+  margin-bottom: 10px;
+}
+.link{
+    color:black;
+}
+
+.link:hover{
+    color: #D3B43B;
 }
