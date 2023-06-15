@@ -7,6 +7,7 @@ resultados_route_bp = Blueprint('resultados_route', __name__)
 get_team_id_route_bp = Blueprint('get_team_id_route', __name__)
 from app import all_teams
 
+
 @get_team_id_route_bp.route('/team_id', methods=['POST'])
 def get_team_id():
     if request.method == 'POST':
@@ -18,6 +19,7 @@ def get_team_id():
                 return redirect(url_for('resultados_route.resultados', team_id=team_id))
     return render_template('resultados_not_found.html')
 
+
 @resultados_route_bp.route('/resultados/<team_id>', methods=['GET', 'POST'])
 def resultados(team_id):
     headers = {
@@ -27,5 +29,11 @@ def resultados(team_id):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         jsondata = response.json()
-        return render_template('resultados.html', team=jsondata)
+        colors = jsondata['clubColors'].split(' / ')
+        competitions = jsondata.get('runningCompetitions', [])
+        squad = jsondata.get('squad', [])
+        return render_template('resultados.html', team=jsondata,
+                               colors=colors,
+                               competitions=competitions,
+                               squad=squad)
     return render_template('resultados_not_found.html')

@@ -1,35 +1,70 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<nav class="p-4 navbar navbar-expand-lg navbar-dark bg-dark " style="height: 80px">
+<nav class="p-4 navbar navbar-expand-lg navbar-dark bg-dark " style="height: 80px;">
   <div class="container-fluid">
     <h1 class="navbar-brand" style="font-family: 'Montserrat', sans-serif; font-size:30px;"><a class="nav-link" href="{{url_for('home_route.home')}}">Nova Consulta</a></h1>
   </div>
 </nav>
-<img src={{team.crest}} class="img rounded mx-auto d-block mt-10px" alt="Responsive image">
-<h1 class="titulo_result"> Time: <span class="titulo2">{{team.name}}</span>.</h1>
-<hr style="width: 50%; margin: 0 auto;">
-<div>
-  <h1 class="titulo" style="margin-top: 1em;">Sobre o time</h1>
-  <div class="fonte" style="padding-left: 100px;">
-    <h1 style="margin-top: 2em;">Endereço</h1>
-    <ul>
-      <li>
-        <h4>{{team.address}}</h4>
-      </li>
-    </ul>
-    <h1 style="margin-top: 1.5em;">Ano de fundação</h1>
-    <ul>
-      <li>
-        <h4>{{team.founded}}</h4>
-      </li>
-    </ul>
-    <h1 style="margin-top: 1.5em;">Site do clube</h1>
-    <ul>
-      <li>
-        <h4><a class="link" href="{{team.website}}" target="_blank">{{team.website}}</a></h4>
-      </li>
-    </ul>
+<div style="margin-top: 7%;">
+  <img src={{team.crest}} class="img rounded mx-auto d-block mt-10px" alt="Responsive image">
+  <h1 class="titulo_result"> Time: <span class="titulo2">{{team.name}}</span>.</h1>
+  <hr style="width: 50%; margin: 0 auto;">
+  <div>
+    <h1 class="titulo" style="margin-top: 1em;">Sobre o time</h1>
+    <div class="fonte" style="padding-left: 100px;">
+      <h1 style="margin-top: 2em;">Endereço</h1>
+      <ul>
+        <li>
+          <h4>{{team.address}}</h4>
+        </li>
+      </ul>
+      <h1 style="margin-top: 1.5em;">Ano de fundação</h1>
+      <ul>
+        <li>
+          <h4>{{team.founded}}</h4>
+        </li>
+      </ul>
+      <h1 style="margin-top: 1.5em;">Site do clube</h1>
+      <ul>
+        <li>
+          <h4><a class="link" href="{{team.website}}" target="_blank">{{team.website}}</a></h4>
+        </li>
+      </ul>
+      <h1 style="margin-top: 1.5em;">Cores do clube</h1>
+      <ul>
+        {% for color in colors %}
+        <li>
+          <h4 style="color: {{color}};">{{color}}</h4>
+        </li>
+        {% endfor %}
+      </ul>
+      <h1 style="margin-top: 1.5em;">Competições que o clube está disputando</h1>
+      <ul>
+        {% for competition in competitions %}
+        <li>
+          <h4>{{competition.name}}</h4>
+          {% if competition.emblem %}
+          <img src={{competition.emblem}} class="img-competition rounded d-block" alt="Responsive image">
+          {% else %}
+          <h6> - Sem emblema disponível</h6>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <h1 style="margin-top: 1.5em;">Time atual</h1>
+      <ul>
+        {% for teamplayer in squad %}
+        <li>
+          <h4>{{teamplayer.name}} - {{teamplayer.position}}</h4>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
+  <footer class="footer">
+    <hr style="width: 90%; margin: 0 auto; color: black;">
+    <h6>Desenvolvido por Liep Böeger</h6>
+  </footer>
 </div>
 
 {% endblock conteudo %}

@@ -8,6 +8,13 @@ body {
   min-height: 100%;
 }
 
+.navbar{
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .titulo_result {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -21,12 +28,18 @@ body {
   margin-top: 50px;
 }
 
+.img-competition {
+  padding: 10px;
+  width: 15%;
+  margin: 2% 0%;
+}
+
 .titulo {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 70px;
   text-align: center;
-  margin-top: 300px;
+  margin-top: 13%;
 }
 
 .titulo2 {
@@ -198,4 +211,13 @@ button span:after {
 
 .link:hover{
     color: #D3B43B;
+}
+
+.footer {
+    text-align:center;
+    color: #CCCCCC;
+}
+
+.footer h6 {
+    padding: 2em;
 }
