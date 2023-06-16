@@ -1,11 +1,21 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from fuzzywuzzy import fuzz, process
 from unicodedata import normalize
+from translate import Translator
 import requests
 
+translator = Translator(to_lang='pt')
 resultados_route_bp = Blueprint('resultados_route', __name__)
 get_team_id_route_bp = Blueprint('get_team_id_route', __name__)
 from app import all_teams
+
+def traduz_cor(colors):
+    cores_traduzidas = {}
+    for color in colors:
+        cor_traduzida = translator.translate(color)
+        if color == 'Maroon':
+            cor_traduzida = 'Vermelho' #Tradução vem errada, o Maroon acaba traduzindo para marrom.
+        cores_traduzidas[color] = cor_traduzida
+    return cores_traduzidas
 
 
 @get_team_id_route_bp.route('/team_id', methods=['POST'])
@@ -30,10 +40,11 @@ def resultados(team_id):
     if response.status_code == 200:
         jsondata = response.json()
         colors = jsondata['clubColors'].split(' / ')
+        cor_traduzida = traduz_cor(colors)
         competitions = jsondata.get('runningCompetitions', [])
         squad = jsondata.get('squad', [])
         return render_template('resultados.html', team=jsondata,
-                               colors=colors,
+                               colors=cor_traduzida,
                                competitions=competitions,
                                squad=squad)
     return render_template('resultados_not_found.html')

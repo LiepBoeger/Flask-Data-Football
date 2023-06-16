@@ -32,9 +32,9 @@
       </ul>
       <h1 style="margin-top: 1.5em;">Cores do clube</h1>
       <ul>
-        {% for color in colors %}
+        {% for color, cor in colors.items() %}
         <li>
-          <h4 style="color: {{color}};">{{color}}</h4>
+          <h4 style="color: {{color}};">{{cor}}</h4>
         </li>
         {% endfor %}
       </ul>
