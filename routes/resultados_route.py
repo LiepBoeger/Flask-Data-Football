@@ -50,11 +50,7 @@ def resultados(team_id):
 
     jogadores_por_posicao = {}
     for jogador in jsondata['squad']:
-        posicao = translator.translate(jogador['position'])
-        if posicao == 'Transgressão':
-            posicao = 'Atacante'
-        if posicao == 'meio de campo':
-            posicao = 'Meio-Campo'
+        posicao = jogador['position']
         if posicao not in jogadores_por_posicao:
             jogadores_por_posicao[posicao] = []
         jogadores_por_posicao[posicao].append(jogador)
