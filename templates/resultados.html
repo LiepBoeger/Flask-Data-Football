@@ -43,20 +43,24 @@
         {% for competition in competitions %}
         <li>
           <h4>{{competition.name}}</h4>
-          {% if competition.emblem %}
-          <img src={{competition.emblem}} class="img-competition rounded d-block" alt="Responsive image">
-          {% else %}
-          <h6> - Sem emblema disponível</h6>
-          {% endif %}
         </li>
         {% endfor %}
       </ul>
+      <h1 style="margin-top: 1.5em;">Treinador</h1>
+      <ul>
+        <li>
+          <h4>Nome: {{coach.name}}</h4>
+        </li>
+      </ul>
       <h1 style="margin-top: 1.5em;">Time atual</h1>
       <ul>
-        {% for teamplayer in squad %}
-        <li>
-          <h4>{{teamplayer.name}} - {{teamplayer.position}}</h4>
-        </li>
+        {% for posicao, jogadores in jogadores_por_posicao.items() %}
+        <li><h4>{{ posicao }}</h4></li>
+          <ul>
+          {% for jogador in jogadores %}
+            <li><h5>{{ jogador['name'] }}</h5></li>
+          {% endfor %}
+          </ul>
         {% endfor %}
       </ul>
     </div>
