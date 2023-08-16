@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<h1 class="titulo">Procure por seu time da <span class="titulo2">série A</span> favorito.</h1>
+<h1 class="titulo">Search for your favorite <span class="titulo2">serie A</span> team.</h1>
 <div id="cover">
   <form method="POST" action="{{url_for('get_team_id_route.get_team_id')}}">
     <div class="tb">
-      <div class="td"><input name="team_name" type="text" placeholder="Digite um time..." required></div>
+      <div class="td"><input name="team_name" type="text" placeholder="Team name..." required></div>
       <div class="td" id="s-cover">
         <button type="submit">
           <div id="s-circle"></div>

@@ -2,43 +2,43 @@
 {% block conteudo %}
 <nav class="p-4 navbar navbar-expand-lg navbar-dark bg-dark " style="height: 80px;">
   <div class="container-fluid">
-    <h1 class="navbar-brand" style="font-family: 'Montserrat', sans-serif; font-size:30px;"><a class="nav-link" href="{{url_for('home_route.home')}}">Nova Consulta</a></h1>
+    <h1 class="navbar-brand" style="font-family: 'Montserrat', sans-serif; font-size:30px;"><a class="nav-link" href="{{url_for('home_route.home')}}">New Query</a></h1>
   </div>
 </nav>
 <div style="margin-top: 7%;">
   <img src={{team.crest}} class="img rounded mx-auto d-block mt-10px" alt="Responsive image">
-  <h1 class="titulo_result"> Time: <span class="titulo2">{{team.name}}</span>.</h1>
+  <h1 class="titulo_result"> Team: <span class="titulo2">{{team.name}}</span>.</h1>
   <hr style="width: 50%; margin: 0 auto;">
   <div>
-    <h1 class="titulo" style="margin-top: 1em;">Sobre o time</h1>
+    <h1 class="titulo" style="margin-top: 1em;">About the team</h1>
     <div class="fonte" style="padding-left: 100px;">
-      <h1 style="margin-top: 2em;">Endereço</h1>
+      <h1 style="margin-top: 2em;">Adress</h1>
       <ul>
         <li>
           <h4>{{team.address}}</h4>
         </li>
       </ul>
-      <h1 style="margin-top: 1.5em;">Ano de fundação</h1>
+      <h1 style="margin-top: 1.5em;">Founded in</h1>
       <ul>
         <li>
           <h4>{{team.founded}}</h4>
         </li>
       </ul>
-      <h1 style="margin-top: 1.5em;">Site do clube</h1>
+      <h1 style="margin-top: 1.5em;">Team website</h1>
       <ul>
         <li>
           <h4><a class="link" href="{{team.website}}" target="_blank">{{team.website}}</a></h4>
         </li>
       </ul>
-      <h1 style="margin-top: 1.5em;">Cores do clube</h1>
+      <h1 style="margin-top: 1.5em;">Team colors</h1>
       <ul>
-        {% for color, cor in colors.items() %}
+        {% for color in colors %}
         <li>
-          <h4 style="color: {{color}};">{{cor}}</h4>
+          <h4 style="color: {{color}};">{{color}}</h4>
         </li>
         {% endfor %}
       </ul>
-      <h1 style="margin-top: 1.5em;">Competições que o clube está disputando</h1>
+      <h1 style="margin-top: 1.5em;">Running competitions</h1>
       <ul>
         {% for competition in competitions %}
         <li>
@@ -46,13 +46,13 @@
         </li>
         {% endfor %}
       </ul>
-      <h1 style="margin-top: 1.5em;">Treinador</h1>
+      <h1 style="margin-top: 1.5em;">Coach</h1>
       <ul>
         <li>
           <h4>Nome: {{coach.name}}</h4>
         </li>
       </ul>
-      <h1 style="margin-top: 1.5em;">Time atual</h1>
+      <h1 style="margin-top: 1.5em;">Current team</h1>
       <ul>
         {% for posicao, jogadores in jogadores_por_posicao.items() %}
         <li><h4>{{ posicao }}</h4></li>
@@ -67,7 +67,7 @@
   </div>
   <footer class="footer">
     <hr style="width: 90%; margin: 0 auto; color: black;">
-    <h6>Desenvolvido por Liep Böeger</h6>
+    <h6>Developed by Liep Böeger</h6>
   </footer>
 </div>
 

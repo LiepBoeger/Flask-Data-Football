@@ -1,19 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from unicodedata import normalize
-from translate import Translator
 import requests
 
-translator = Translator(to_lang='pt')
 resultados_route_bp = Blueprint('resultados_route', __name__)
 get_team_id_route_bp = Blueprint('get_team_id_route', __name__)
 from app import all_teams
-
-def traduz_cor(colors):
-    cores_traduzidas = {color: translator.translate(color) for color in colors}
-    key = 'Maroon'
-    if key in cores_traduzidas:
-        cores_traduzidas['Maroon'] = 'Vermelho'
-    return cores_traduzidas
 
 @get_team_id_route_bp.route('/team_id', methods=['POST'])
 def get_team_id():
@@ -43,7 +34,6 @@ def resultados(team_id):
             return render_template('resultados_not_found.html')
 
     colors = jsondata['clubColors'].split(' / ')
-    cor_traduzida = traduz_cor(colors)
     competitions = jsondata.get('runningCompetitions', [])
     squad = jsondata.get('squad', [])
     coach = jsondata.get('coach')
@@ -56,7 +46,7 @@ def resultados(team_id):
         jogadores_por_posicao[posicao].append(jogador)
 
     return render_template('resultados.html', team=jsondata,
-                           colors=cor_traduzida,
+                           colors=colors,
                            competitions=competitions,
                            squad=squad,
                            coach=coach,
