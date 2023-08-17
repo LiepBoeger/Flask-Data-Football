@@ -1,2 +1,2 @@
 # Flask-API-Football
-Aplicação web feita em Flask que consome os dados da API "Football Data" para retornar dados de times de futebol da série A pesquisados pelo usuário.
+Web application built in Flask that consumes data from the 'Football Data' API to retrieve information about Serie A soccer teams searched by the user.
